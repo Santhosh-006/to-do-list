@@ -1,11 +1,14 @@
 import express from "express";
 import router from "./routes/toDo.route.js";
 import connectDB from "./lib/db.js";
+import cors from "cors";
 
 const app = express();
 
 // connect to mongoDB
 connectDB();
+
+app.use(cors());
 // Data understanding in express
 
 app.use(express.json());

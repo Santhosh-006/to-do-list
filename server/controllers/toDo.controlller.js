@@ -40,3 +40,13 @@ export const TodoUpdate = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const TodoDelete = async (req, res) => {
+  try {
+    await ToDo.deleteOne({ title: req.params.id });
+
+    res.json({ message: "Todo deleted successfully..." });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
