@@ -21,7 +21,7 @@ export const TodoCreateData = async (req, res) => {
     const todo = await newTodo.save();
     return res.json(todo);
   } catch (error) {
-    return res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: "Already exists" });
   }
 };
 

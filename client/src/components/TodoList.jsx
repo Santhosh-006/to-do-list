@@ -7,7 +7,7 @@ const TodoList = ({ todos, onToggle, onDelete }) => {
       <ul>
         {todos.map((todo) => {
           return (
-            <li key={todo.title}>
+            <li key={todo._id}>
               <span onClick={() => onToggle(todo._id)}>{todo.title}</span>
               <button onClick={() => onDelete(todo._id)}>Delete</button>
             </li>

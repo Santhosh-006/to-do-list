@@ -8,7 +8,7 @@ const schema = new Schema({
   },
   isCompleted: {
     type: Boolean,
-    required: true,
+    default: false,
   },
 });
 

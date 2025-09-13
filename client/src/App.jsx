@@ -28,7 +28,7 @@ const App = () => {
   const addTodos = async (e) => {
     e.preventDefault();
     try {
-      await fetch(API_URI, {
+      const res = await fetch(`${API_URI}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,16 +38,23 @@ const App = () => {
           isCompleted: false,
         }),
       });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        alert(errorData.message || "Failed to add todo.");
+        return;
+      }
       setNewTodo("");
       fetchTodos();
     } catch (error) {
       setError(`Failed to add data : ${error.message}`);
+      console.log(error.message);
     }
   };
 
   const updateTodos = async (toDoid) => {
     try {
-      await fetch(`{API_URI}/${toDoid}`, {
+      await fetch(`${API_URI}${toDoid}`, {
         method: "PUT",
       });
       fetchTodos();
@@ -59,7 +66,7 @@ const App = () => {
   const detetodos = async (toDoid) => {
     if (!window.confirm("Delete this Todo ? ")) return;
     try {
-      await fetch(`${API_URI}/${toDoid}`, {
+      await fetch(`${API_URI}${toDoid}`, {
         method: "DELETE",
       });
       setTodos((prev) => prev.filter((todo) => todo._id !== toDoid));
@@ -74,6 +81,7 @@ const App = () => {
         <form onSubmit={addTodos}>
           <input
             type="text"
+            value={newTodo}
             onChange={(e) => {
               setNewTodo(e.target.value);
             }}
@@ -82,7 +90,7 @@ const App = () => {
         </form>
         {loading && <p>Loading....</p>}
         {error && <p>{error}</p>}
-        <TodoList todos={todos} ontoggle={updateTodos} onDelete={detetodos} />
+        <TodoList todos={todos} onToggle={updateTodos} onDelete={detetodos} />
       </div>
     </>
   );
