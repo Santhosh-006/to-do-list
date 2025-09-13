@@ -27,12 +27,12 @@ export const TodoCreateData = async (req, res) => {
 
 export const TodoUpdate = async (req, res) => {
   try {
-    const todo = await ToDo.findOne({ title: req.params.id });
+    const todo = await ToDo.findById(req.params.id);
     if (!todo) {
       return res.status(404).json({ message: "Todo not found" });
     }
 
-    todo.isCompleted = !todo.isCompleted; // toggle
+    todo.isCompleted = !todo.isCompleted;
     const updatedTodo = await todo.save();
 
     return res.json(updatedTodo);
@@ -43,7 +43,7 @@ export const TodoUpdate = async (req, res) => {
 
 export const TodoDelete = async (req, res) => {
   try {
-    await ToDo.deleteOne({ title: req.params.id });
+    await ToDo.deleteOne({ _id: req.params.id });
 
     res.json({ message: "Todo deleted successfully..." });
   } catch (error) {
