@@ -8,8 +8,8 @@ const TodoList = ({ todos, onToggle, onDelete }) => {
         {todos.map((todo) => {
           return (
             <li key={todo.title}>
-              <span onClick={() => onToggle(todo.title)}>{todo.title}</span>
-              <button onClick={() => onDelete(todo.title)}>Delete</button>
+              <span onClick={() => onToggle(todo._id)}>{todo.title}</span>
+              <button onClick={() => onDelete(todo._id)}>Delete</button>
             </li>
           );
         })}

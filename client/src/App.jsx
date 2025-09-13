@@ -45,9 +45,9 @@ const App = () => {
     }
   };
 
-  const updateTodos = async (title) => {
+  const updateTodos = async (toDoid) => {
     try {
-      await fetch(`{API_URI}/${title}`, {
+      await fetch(`{API_URI}/${toDoid}`, {
         method: "PUT",
       });
       fetchTodos();
@@ -56,13 +56,13 @@ const App = () => {
     }
   };
 
-  const detetodos = async (title) => {
-    if (!window.confirm(`Delete "${title}"?`)) return;
+  const detetodos = async (toDoid) => {
+    if (!window.confirm("Delete this Todo ? ")) return;
     try {
-      await fetch(`{API_URI}/${encodeURIComponent(title)}`, {
+      await fetch(`${API_URI}/${toDoid}`, {
         method: "DELETE",
       });
-      setTodos((prev) => prev.filter((todo) => todo.title !== title));
+      setTodos((prev) => prev.filter((todo) => todo._id !== toDoid));
     } catch (error) {
       setError("Failed to delete data" + error.message);
     }
