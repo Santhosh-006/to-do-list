@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://sandys-to-do-list.vercel.app/",
+    origin: "https://sandys-to-do-list.vercel.app",
   })
 );
 // Data understanding in express
