@@ -103,8 +103,8 @@ const App = () => {
             ADD
           </button>
         </form>
-        {/* {loading && <p>Loading....</p>}
-        {error && <p>{error}</p>} */}
+        {loading && <p>Loading....</p>}
+        {error && <p>{error}</p>}
         <TodoList todos={todos} onToggle={updateTodos} onDelete={detetodos} />
       </div>
     </div>
