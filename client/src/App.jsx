@@ -27,6 +27,10 @@ const App = () => {
 
   const addTodos = async (e) => {
     e.preventDefault();
+    if (newTodo.trim() === "") {
+      alert("Empty value found");
+      return;
+    }
     try {
       const res = await fetch(`${API_URI}`, {
         method: "POST",
@@ -76,23 +80,34 @@ const App = () => {
   };
 
   return (
-    <>
-      <div>
-        <form onSubmit={addTodos}>
+    <div className="flex flex-col items-center justify-center mt-24 ">
+      <div className=" rounded shadow-2xl p-5">
+        <form
+          onSubmit={addTodos}
+          className=" my-2
+          "
+        >
           <input
+            className="mr-3 border-2 border-indigo-400 rounded h-8 p-1.5 focus:outline-blue-500"
+            placeholder="Enter new Todo..."
             type="text"
             value={newTodo}
             onChange={(e) => {
               setNewTodo(e.target.value);
             }}
           />
-          <button type="submit">ADD</button>
+          <button
+            className="bg-indigo-400 text-black font-bold rounded p-1 px-1.5 h-8 "
+            type="submit"
+          >
+            ADD
+          </button>
         </form>
-        {loading && <p>Loading....</p>}
-        {error && <p>{error}</p>}
+        {/* {loading && <p>Loading....</p>}
+        {error && <p>{error}</p>} */}
         <TodoList todos={todos} onToggle={updateTodos} onDelete={detetodos} />
       </div>
-    </>
+    </div>
   );
 };
 
