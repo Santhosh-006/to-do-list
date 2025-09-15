@@ -6,7 +6,6 @@ import cors from "cors";
 const app = express();
 
 // connect to mongoDB
-connectDB();
 
 app.use(cors());
 // Data understanding in express
@@ -16,6 +15,15 @@ app.use(express.urlencoded({ extended: "true" }));
 
 app.use("/", router);
 
-app.listen(6969, () => {
-  console.log("Server running at port 6969");
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(6969, () => {
+      console.log(`Server is running on port http://localhost:6969`);
+    });
+  } catch (error) {
+    console.log("Failed to connect to the database.");
+  }
+};
+
+startServer();
