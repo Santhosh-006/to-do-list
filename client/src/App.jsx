@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
 const App = () => {
-  const API_URI = "http://localhost:6969/";
+  const API_URI = "https://to-do-list-three-liard-81.vercel.app/";
 
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");

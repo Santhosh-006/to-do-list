@@ -7,7 +7,11 @@ const app = express();
 
 // connect to mongoDB
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://sandys-to-do-list.vercel.app/",
+  })
+);
 // Data understanding in express
 
 app.use(express.json());
